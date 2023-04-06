@@ -28,7 +28,10 @@ WORKDIR /app
 COPY . .
 
 # Expose ports for Node.js (change this if your app uses a different port)
-EXPOSE 3000
+EXPOSE 3000 27017
+
+# Start MongoDB service
+RUN service mongodb start
 
 # Start MongoDB and run the Node.js application
 CMD mongod --fork --logpath /var/log/mongodb.log && \
