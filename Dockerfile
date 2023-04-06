@@ -31,7 +31,7 @@ COPY . .
 EXPOSE 3000 27017
 
 # Start MongoDB service
-RUN service mongodb start
+RUN /etc/init.d/mongodb start
 
 # Start MongoDB and run the Node.js application
 CMD mongod --fork --logpath /var/log/mongodb.log && \
