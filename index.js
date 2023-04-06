@@ -15,7 +15,7 @@ app.use('/api/v1/trade', tradeRouter)
  * 404 not found exception handler
  */
 app.use((req, res, next) => {
-    return res.send('Requested route not found', 404);
+    return res.status(404).send('Requested route not found');
 });
 
 app.listen(5000, () => { console.log('sever started on port 5000') })
