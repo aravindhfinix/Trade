@@ -2,12 +2,6 @@ const { Trade } = require('../models/trade-model')
 
 
 exports.listData = (req, res) => {
-    const cachedData = myCache.get(id);
-    if (cachedData) {
-        console.log('Retrieving data from cache for id:', id);
-        return res.send(cachedData);
-    }
-
     const query = req.query
     const options = {
         page: query.page || 0,
