@@ -17,7 +17,7 @@ RUN echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | 
 RUN apt-get update && apt-get install -y mongodb-org
 
 # Expose the desired ports for your Node.js and MongoDB applications
-EXPOSE 3000 27017
+EXPOSE 5000 27017
 
 # Copy the rest of the application code to the working directory
 COPY . .
