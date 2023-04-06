@@ -1,11 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const tradeRouter = require('./src/routes/trade-rotues');
-const NodeCache = require('node-cache');
 const app = express()
-
-// create a new cache with a TTL (time-to-live) of 60 seconds
-exports.myCache = new NodeCache({ stdTTL: 60 });
 
 mongoose.connect('mongodb://localhost/trading').then(response=>{
     console.log('mongoose connected successfully')
