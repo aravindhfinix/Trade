@@ -23,5 +23,4 @@ EXPOSE 3000 27017
 COPY . .
 
 # Start MongoDB service
-CMD ["mongod", "--fork", "--logpath", "/var/log/mongodb.log", "--bind_ip", "0.0.0.0", "--port", "27017"] && \
-    npm start
+CMD /etc/init.d/mongodb start && npm start
