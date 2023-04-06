@@ -1,4 +1,3 @@
-const { myCache } = require('../..');
 const { Trade } = require('../models/trade-model')
 
 

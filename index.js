@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const tradeRouter = require('./src/routes/trade-rotues');
 const app = express()
 
-mongoose.connect('mongodb://localhost/trading').then(response=>{
+mongoose.connect('mongodb+srv://aravindhfinix:aravindhfinix123@cluster0.n8ybuog.mongodb.net/trade?authSource=admin&replicaSet=atlas-xl4e7v-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true').then(response=>{
     console.log('mongoose connected successfully')
 })
 

@@ -10,14 +10,6 @@ COPY package*.json ./
 # Install Node.js dependencies
 RUN npm install
 
-# Install MongoDB
-RUN apt-get update
-RUN apt-get install -y gnupg
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 4B7C549A058F8B6B
-RUN echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-RUN apt-get update
-RUN apt-get install -y mongodb-org
-
 # Expose the desired ports for your Node.js and MongoDB applications
 EXPOSE 5000 27017
 
@@ -25,4 +17,4 @@ EXPOSE 5000 27017
 COPY . .
 
 # Start MongoDB service
-CMD /etc/init.d/mongodb start && npm start
+CMD npm start
