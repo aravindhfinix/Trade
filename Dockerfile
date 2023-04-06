@@ -1,39 +1,27 @@
-# Use the official Node.js 18 image as the base
-FROM node:18.12.1
+# Use the official Node.js base image
+FROM node:14
 
-# Import the MongoDB public GPG key
-RUN apt-get update && \
-    apt-get install -y gnupg && \
-    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
-
-# Add the MongoDB repository
-RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-
-# Install MongoDB
-RUN apt-get update && \
-    apt-get install -y mongodb-org
-
-# Create the MongoDB data directory
-RUN mkdir -p /data/db
+# Set the working directory in the container
+WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install any additional dependencies here if needed
+# Install Node.js dependencies
+RUN npm install
 
-# Set the working directory
-WORKDIR /app
+# Install MongoDB
+RUN apt-get update && apt-get install -y gnupg
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 4B7C549A058F8B6B
+RUN echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+RUN apt-get update && apt-get install -y mongodb-org
 
-# Copy the application code to the working directory
-COPY . .
-
-# Expose ports for Node.js (change this if your app uses a different port)
+# Expose the desired ports for your Node.js and MongoDB applications
 EXPOSE 3000 27017
 
-# Start MongoDB service
-RUN /etc/init.d/mongodb start
+# Copy the rest of the application code to the working directory
+COPY . .
 
-# Start MongoDB and run the Node.js application
-CMD mongod --fork --logpath /var/log/mongodb.log && \
-    npm install && \
+# Start MongoDB service
+CMD ["mongod", "--fork", "--logpath", "/var/log/mongodb.log", "--bind_ip", "0.0.0.0", "--port", "27017"] && \
     npm start
