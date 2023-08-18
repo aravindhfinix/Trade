@@ -9,7 +9,7 @@ mongoose.connect('mongodb+srv://aravindhfinix:aravindhfinix123@cluster0.n8ybuog.
 
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-app.use('/api/v1/trade', tradeRouter)
+app.use('/api/v1/trader', tradeRouter)
 
 /**
  * 404 not found exception handler
