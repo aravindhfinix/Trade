@@ -1,0 +1,13 @@
+{
+    "apps": [
+      {
+        "name": "trade",
+        "script": "index.js",
+        "interpreter": "node",
+        "out_file": "/home/sparkout/.pm2/logs/trade.log",
+        "error_file": "/home/sparkout/.pm2/logs/trade.log",
+        "log_date_format": "YYYY-MM-DD HH:mm:ss"
+      }
+    ]
+  }
+  
